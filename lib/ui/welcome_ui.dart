@@ -53,15 +53,47 @@ class WelcomeUI extends StatelessWidget {
             //     text: 'Do',
             //     textColor: Colors.amber,
             //     noteNumber: '7'),
-            // // newMethod2(Colors.blue, 'Me', Colors.red),
+            // newMethod2(Colors.blue, 'Me', Colors.red),
             // newMethod3(Colors.teal),
             // newMethod(Colors.teal, 'Sol', Colors.red),
             // newMethod(Colors.green, 'Lya', Colors.red),
             // newMethod(Colors.orange, 'Si', Colors.red),
             // newMethod(Colors.pink, 'ef', Colors.red),
-            NotaWidget(containerTus: Colors.amber),
-            NotaWidget(containerTus: Colors.red),
-            NotaWidget(containerTus: Colors.pink),
+            NotaWidget(
+              containerTus: Colors.amber,
+              title: 'Do',
+              notaNumber: '1',
+            ),
+            NotaWidget(
+              containerTus: Colors.red,
+              title: 'Re',
+              notaNumber: '2',
+            ),
+            NotaWidget(
+              containerTus: Colors.pink,
+              title: 'Me',
+              notaNumber: '3',
+            ),
+            NotaWidget(
+              containerTus: Colors.teal,
+              title: 'Fa',
+              notaNumber: '4',
+            ),
+            NotaWidget(
+              containerTus: Colors.blue,
+              title: 'Sol',
+              notaNumber: '5',
+            ),
+            NotaWidget(
+              containerTus: Colors.black,
+              title: 'Lya',
+              notaNumber: '6',
+            ),
+            NotaWidget(
+              containerTus: Colors.green,
+              title: 'Si',
+              notaNumber: '7',
+            ),
           ],
         ),
       ),
@@ -102,32 +134,36 @@ class WelcomeUI extends StatelessWidget {
   }
 
   // () - aty jok metod, birok sozsuz berish kerek
-  // Expanded newMethod2(Color? containerTus, String? text, Color? textColor, ) {
-  //   return Expanded(
-  //     child: InkWell(
-  //       onTap: () {
-  //         AssetsAudioPlayer.newPlayer().open(
-  //           Audio("assets/notes/note_1.wav"),
-  //           autoStart: true,
-  //           showNotification: true,
-  //         );
-  //         // final AudioPlayer audioPlayer = AudioPlayer();
-  //         // audioPlayer.play('assets/notes/note_1.wav');
-  //       },
-  //       child: Container(
-  //         width: double.infinity,
-  //         color: containerTus,
-  //         child: Text(
-  //           'Note:$text ',
-  //           style: TextStyle(
-  //             fontSize: 30,
-  //             color: textColor,
-  //           ),
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
+  Expanded newMethod2(
+    Color? containerTus,
+    String? text,
+    Color? textColor,
+  ) {
+    return Expanded(
+      child: InkWell(
+        onTap: () {
+          AssetsAudioPlayer.newPlayer().open(
+            Audio("assets/notes/note_1.wav"),
+            autoStart: true,
+            showNotification: true,
+          );
+          // final AudioPlayer audioPlayer = AudioPlayer();
+          // audioPlayer.play('assets/notes/note_1.wav');
+        },
+        child: Container(
+          width: double.infinity,
+          color: containerTus,
+          child: Text(
+            'Note:$text ',
+            style: TextStyle(
+              fontSize: 30,
+              color: textColor,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 
 // aty jok - birok suragan parametrdi berbei koisok dele ishtei beret
   // Expanded newMethod3([Color? containerTus, String? text, Color? textColor]) {
@@ -160,11 +196,16 @@ class WelcomeUI extends StatelessWidget {
 
 class NotaWidget extends StatelessWidget {
   final Color? containerTus;
-
-  const NotaWidget({
-    this.containerTus,
-  });
+  final String? title;
+  final String? notaNumber;
+  // null != pustoi
   // newMethod2(Color? containerTus,  )
+  const NotaWidget({
+    super.key,
+    this.containerTus,
+    this.title,
+    this.notaNumber,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -172,7 +213,7 @@ class NotaWidget extends StatelessWidget {
       child: InkWell(
         onTap: () {
           AssetsAudioPlayer.newPlayer().open(
-            Audio("assets/notes/note_2.wav"),
+            Audio("assets/notes/note_$notaNumber.wav"),
             autoStart: true,
             showNotification: true,
           );
@@ -182,9 +223,9 @@ class NotaWidget extends StatelessWidget {
         child: Container(
           width: double.infinity,
           color: containerTus,
-          child: const Text(
-            'Note: misal ',
-            style: TextStyle(
+          child: Text(
+            title!,
+            style: const TextStyle(
               fontSize: 30,
               color: Colors.white,
             ),
@@ -194,5 +235,6 @@ class NotaWidget extends StatelessWidget {
     );
   }
 }
+
 
 // DRY - Do not repeat yourself - kaitalaba
